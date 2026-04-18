@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 
 export default function MyWork() {
+  const [isPaused, setIsPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollContainerRef = useRef(null);
+
   const projects = [
     {
       title: 'Dosevana by Thrivewell',
@@ -47,6 +52,109 @@ export default function MyWork() {
     },
   ];
 
+  const originalLength = projects.length;
+  // Duplicate items drastically to create an endless scroll illusion (12 copies)
+  const extendedProjects = Array.from({ length: 12 }, () => projects).flat();
+
+  useEffect(() => {
+    // Initial jump to the middle of our duplicate clusters so user could even scroll backwards safely seamlessly
+    const initScroll = () => {
+      if (scrollContainerRef.current) {
+        const firstChild = scrollContainerRef.current.children[0];
+        if (firstChild && firstChild.offsetWidth > 0) {
+          const itemWidth = firstChild.offsetWidth + 40; // 40px corresponds to gap-10
+          // start precisely at the beginning of the 5th cloned array chunk
+          scrollContainerRef.current.scrollTo({ left: itemWidth * originalLength * 5, behavior: 'auto' });
+        } else {
+          setTimeout(initScroll, 50);
+        }
+      }
+    };
+    // Ensure we trigger slightly after DOM paints elements
+    const timer = setTimeout(initScroll, 50);
+    return () => clearTimeout(timer);
+  }, [originalLength]);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      if (scrollContainerRef.current) {
+        const { scrollLeft } = scrollContainerRef.current;
+        const firstChild = scrollContainerRef.current.children[0];
+        
+        if (firstChild) {
+          const itemWidth = firstChild.offsetWidth + 40;
+          const maxNormalScroll = originalLength * itemWidth;
+
+          // If scrolled extremely far forward past our buffer blocks 
+          if (scrollLeft >= maxNormalScroll * 8) {
+            // Invisibly jump back blocks exactly without smooth scroll interpolation
+            scrollContainerRef.current.scrollTo({ left: scrollLeft - maxNormalScroll * 4, behavior: 'auto' });
+            // immediately increment one card smoothly after shifting baseline 
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                if (scrollContainerRef.current) {
+                  scrollContainerRef.current.scrollTo({ left: scrollContainerRef.current.scrollLeft + itemWidth, behavior: 'smooth' });
+                }
+              });
+            });
+          }
+          // Same treatment if user swipes extremely far backward into earliest blocks
+          else if (scrollLeft <= maxNormalScroll * 2) {
+            scrollContainerRef.current.scrollTo({ left: scrollLeft + maxNormalScroll * 4, behavior: 'auto' });
+             requestAnimationFrame(() => {
+               requestAnimationFrame(() => {
+                 if (scrollContainerRef.current) {
+                     scrollContainerRef.current.scrollTo({ left: scrollContainerRef.current.scrollLeft + itemWidth, behavior: 'smooth' });
+                 }
+               });
+            });
+          } else {
+            // Normal transition advance
+            scrollContainerRef.current.scrollTo({ left: scrollLeft + itemWidth, behavior: 'smooth' });
+          }
+        }
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, originalLength]);
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft } = scrollContainerRef.current;
+      const firstChild = scrollContainerRef.current.children[0];
+      if (firstChild) {
+        const itemWidth = firstChild.offsetWidth + 40;
+        const index = Math.round(scrollLeft / itemWidth);
+        
+        // Loop dots index bound via modulo
+        setActiveIndex(index % originalLength);
+      }
+    }
+  };
+
+  const scrollToDot = (dotIndex) => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft } = scrollContainerRef.current;
+      const firstChild = scrollContainerRef.current.children[0];
+      if (firstChild) {
+        const itemWidth = firstChild.offsetWidth + 40;
+        const currentIndex = Math.round(scrollLeft / itemWidth);
+        const currentMod = currentIndex % originalLength;
+        let diff = dotIndex - currentMod;
+        
+        // Optimize short path logic; avoid spinning around visually too long
+        if (diff > originalLength / 2) diff -= originalLength;
+        else if (diff < -originalLength / 2) diff += originalLength;
+
+        const targetIndex = currentIndex + diff;
+        scrollContainerRef.current.scrollTo({ left: targetIndex * itemWidth, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <section id="work" className="max-w-[1170px] mx-auto px-4 md:px-0 mt-20">
       <div className="flex justify-between items-center mb-12">
@@ -56,17 +164,25 @@ export default function MyWork() {
         </Link>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {projects.map((project, index) => (
+      <div 
+        ref={scrollContainerRef}
+        onScroll={handleScroll}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+        className="flex gap-10 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      >
+        {extendedProjects.map((project, index) => (
           <a
             key={index}
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="group cursor-pointer"
+            className="group cursor-pointer shrink-0 w-full sm:w-[calc(50%-20px)] lg:w-[calc(33.333%-27px)] snap-start"
           >
             <div
-              className={`rounded-lg overflow-hidden max-w-[370px] h-[360px] ${project.bgClass}`}
+              className={`rounded-lg overflow-hidden w-full h-[360px] ${project.bgClass}`}
             >
               <img
                 src={project.img}
@@ -83,10 +199,15 @@ export default function MyWork() {
       </div>
 
       <div className="flex justify-center mt-12 gap-3">
-        <span className="w-10 h-1 bg-gray-800 rounded-full"></span>
-        <span className="w-3 h-1 bg-gray-400 rounded-full"></span>
-        <span className="w-3 h-1 bg-gray-400 rounded-full"></span>
-        <span className="w-3 h-1 bg-gray-400 rounded-full"></span>
+        {Array.from({ length: originalLength }).map((_, index) => (
+          <span
+            key={index}
+            onClick={() => scrollToDot(index)}
+            className={`h-1 cursor-pointer transition-all duration-300 rounded-full ${
+              activeIndex === index ? 'w-10 bg-gray-800' : 'w-3 bg-gray-400'
+            }`}
+          ></span>
+        ))}
       </div>
     </section>
   );
