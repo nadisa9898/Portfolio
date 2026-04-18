@@ -1,56 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import { projects } from '../utils/my-work';
 
 export default function MyWork() {
   const [isPaused, setIsPaused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef(null);
 
-  const projects = [
-    {
-      title: 'Dosevana by Thrivewell',
-      type: 'Website',
-      img: '/images/slimup.png',
-      link: 'https://nexgenmdscientific.com/',
-      bgClass: 'bg-blue-200',
-    },
-    {
-      title: 'Dosevana by Thrivewell',
-      type: 'Website',
-      img: '/images/dosevana2.png',
-      link: 'https://nexgenmdscientific.com/',
-      bgClass: 'bg-purple-200 flex justify-center',
-      imgClass: 'block mx-auto',
-    },
-    {
-      title: 'DocMedilink',
-      type: 'Website',
-      img: '/images/docmedicLink.png',
-      link: 'https://nexgenmdscientific.com/',
-      bgClass: 'bg-green-200',
-    },
-    {
-      title: 'Epiq Script',
-      type: 'SaaS - Health Tech',
-      img: '/images/epiqScript.png',
-      link: 'https://nexgenmdscientific.com/',
-      bgClass: 'bg-green-300',
-    },
-    {
-      title: 'NexGen Scientific',
-      type: 'Website',
-      img: '/images/nexgen.png',
-      link: 'https://nexgenmdscientific.com/',
-      bgClass: 'bg-blue-300',
-    },
-    {
-      title: 'Rizz Pharma',
-      type: 'Website',
-      img: '/images/ufc.png',
-      link: 'https://nexgenmdscientific.com/',
-      bgClass: 'bg-purple-400',
-    },
-  ];
+
 
   const originalLength = projects.length;
   // Duplicate items drastically to create an endless scroll illusion (12 copies)
@@ -82,7 +39,7 @@ export default function MyWork() {
       if (scrollContainerRef.current) {
         const { scrollLeft } = scrollContainerRef.current;
         const firstChild = scrollContainerRef.current.children[0];
-        
+
         if (firstChild) {
           const itemWidth = firstChild.offsetWidth + 40;
           const maxNormalScroll = originalLength * itemWidth;
@@ -103,12 +60,12 @@ export default function MyWork() {
           // Same treatment if user swipes extremely far backward into earliest blocks
           else if (scrollLeft <= maxNormalScroll * 2) {
             scrollContainerRef.current.scrollTo({ left: scrollLeft + maxNormalScroll * 4, behavior: 'auto' });
-             requestAnimationFrame(() => {
-               requestAnimationFrame(() => {
-                 if (scrollContainerRef.current) {
-                     scrollContainerRef.current.scrollTo({ left: scrollContainerRef.current.scrollLeft + itemWidth, behavior: 'smooth' });
-                 }
-               });
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                if (scrollContainerRef.current) {
+                  scrollContainerRef.current.scrollTo({ left: scrollContainerRef.current.scrollLeft + itemWidth, behavior: 'smooth' });
+                }
+              });
             });
           } else {
             // Normal transition advance
@@ -128,7 +85,7 @@ export default function MyWork() {
       if (firstChild) {
         const itemWidth = firstChild.offsetWidth + 40;
         const index = Math.round(scrollLeft / itemWidth);
-        
+
         // Loop dots index bound via modulo
         setActiveIndex(index % originalLength);
       }
@@ -144,7 +101,7 @@ export default function MyWork() {
         const currentIndex = Math.round(scrollLeft / itemWidth);
         const currentMod = currentIndex % originalLength;
         let diff = dotIndex - currentMod;
-        
+
         // Optimize short path logic; avoid spinning around visually too long
         if (diff > originalLength / 2) diff -= originalLength;
         else if (diff < -originalLength / 2) diff += originalLength;
@@ -164,7 +121,7 @@ export default function MyWork() {
         </Link>
       </div>
 
-      <div 
+      <div
         ref={scrollContainerRef}
         onScroll={handleScroll}
         onMouseEnter={() => setIsPaused(true)}
@@ -186,9 +143,8 @@ export default function MyWork() {
             >
               <img
                 src={project.img}
-                className={`w-full h-full object-cover group-hover:scale-105 transition duration-300 ${
-                  project.imgClass || ''
-                }`}
+                className={`w-full h-full object-cover group-hover:scale-105 transition duration-300 ${project.imgClass || ''
+                  }`}
                 alt={project.title}
               />
             </div>
@@ -203,9 +159,8 @@ export default function MyWork() {
           <span
             key={index}
             onClick={() => scrollToDot(index)}
-            className={`h-1 cursor-pointer transition-all duration-300 rounded-full ${
-              activeIndex === index ? 'w-10 bg-gray-800' : 'w-3 bg-gray-400'
-            }`}
+            className={`h-1 cursor-pointer transition-all duration-300 rounded-full ${activeIndex === index ? 'w-10 bg-gray-800' : 'w-3 bg-gray-400'
+              }`}
           ></span>
         ))}
       </div>

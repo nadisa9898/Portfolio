@@ -1,0 +1,45 @@
+export const projects = [
+    {
+        title: 'Dosevana by Thrivewell',
+        type: 'Website',
+        img: '/images/slimup.png',
+        link: 'https://nexgenmdscientific.com/',
+        bgClass: 'bg-blue-200',
+    },
+    {
+        title: 'Dosevana by Thrivewell',
+        type: 'Website',
+        img: '/images/dosevana2.png',
+        link: 'https://nexgenmdscientific.com/',
+        bgClass: 'bg-purple-200 flex justify-center',
+        imgClass: 'block mx-auto',
+    },
+    {
+        title: 'DocMedilink',
+        type: 'Website',
+        img: '/images/docmedicLink.png',
+        link: 'https://nexgenmdscientific.com/',
+        bgClass: 'bg-green-200',
+    },
+    {
+        title: 'Epiq Script',
+        type: 'SaaS - Health Tech',
+        img: '/images/epiqScript.png',
+        link: 'https://nexgenmdscientific.com/',
+        bgClass: 'bg-green-300',
+    },
+    {
+        title: 'NexGen Scientific',
+        type: 'Website',
+        img: '/images/nexgen.png',
+        link: 'https://nexgenmdscientific.com/',
+        bgClass: 'bg-blue-300',
+    },
+    {
+        title: 'Rizz Pharma',
+        type: 'Website',
+        img: '/images/ufc.png',
+        link: 'https://nexgenmdscientific.com/',
+        bgClass: 'bg-purple-400',
+    },
+];
