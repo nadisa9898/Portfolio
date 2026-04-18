@@ -8,7 +8,7 @@ export default function Banner() {
             Build designs that are visually clean and practically effective.
           </h2>
 
-          <button className="bg-black text-white hover:bg-gray-900 px-8 py-5 rounded-full font-semibold !text-[18px] transition duration-300">
+          <button className="bg-black text-white hover:bg-gray-900 px-8 py-5 rounded-full font-semibold !text-[18px] transition duration-300bg-black text-white w-[186px] h-[62px] flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-800 transition-colors">
             View My Work
           </button>
         </div>

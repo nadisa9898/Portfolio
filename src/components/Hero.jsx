@@ -18,11 +18,11 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-wrap gap-4">
-          <button className="bg-black text-white px-6 py-3 rounded-full cursor-pointer hover:bg-gray-800 transition-colors">
+          <button className="bg-black text-white w-[186px] h-[62px] flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-800 transition-colors">
             View My Work
           </button>
 
-          <button className="border border-black px-6 py-3 rounded-full hover:bg-gray-50 transition-colors">
+          <button className="border border-black w-[186px] h-[62px] flex justify-center items-center rounded-full hover:bg-gray-50 transition-colors">
             Download Resume
           </button>
         </div>
