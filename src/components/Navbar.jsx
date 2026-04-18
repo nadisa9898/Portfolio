@@ -11,10 +11,10 @@ export default function Navbar() {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     };
   }, [mobileMenuOpen]);
 
@@ -85,30 +85,26 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <span
-            className={`absolute block w-6 h-0.5 bg-[#242424] rounded transition-all duration-300 ${
-              mobileMenuOpen ? 'rotate-45' : '-translate-y-2'
-            }`}
+            className={`absolute block w-6 h-0.5 bg-[#242424] rounded transition-all duration-300 ${mobileMenuOpen ? 'rotate-45' : '-translate-y-2'
+              }`}
           ></span>
           <span
-            className={`absolute block w-6 h-0.5 bg-[#242424] rounded transition-all duration-300 ${
-              mobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100'
-            }`}
+            className={`absolute block w-6 h-0.5 bg-[#242424] rounded transition-all duration-300 ${mobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100'
+              }`}
           ></span>
           <span
-            className={`absolute block w-6 h-0.5 bg-[#242424] rounded transition-all duration-300 ${
-              mobileMenuOpen ? '-rotate-45' : 'translate-y-2'
-            }`}
+            className={`absolute block w-6 h-0.5 bg-[#242424] rounded transition-all duration-300 ${mobileMenuOpen ? '-rotate-45' : 'translate-y-2'
+              }`}
           ></span>
         </button>
       </nav>
 
       {/* ================= MOBILE MENU OVERLAY ================= */}
       <div
-        className={`fixed inset-0 z-[990] bg-[#E3E3CE] flex-col md:hidden transition-opacity duration-300 ease-in-out ${
-          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        } flex`}
+        className={`fixed inset-0 z-[990] bg-[#E3E3CE] flex-col md:hidden transition-opacity duration-300 ease-in-out ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          } flex`}
       >
-        <div className="pt-24 flex flex-col items-center h-full overflow-y-auto">
+        <div className="pt-24 flex flex-col items-center">
           {/* Nav links */}
           <ul className="flex flex-col items-center gap-8 mt-10 text-lg font-semibold text-[#242424]">
             <li className="cursor-pointer" onClick={() => handleNavClick('home')}>
@@ -124,8 +120,15 @@ export default function Navbar() {
 
           {/* Social icons */}
           <div className="flex flex-col items-center gap-5 mt-12 pb-10">
-            <img src="/images/Svg/cv.svg" className="w-7 cursor-pointer" alt="CV" />
-            <img src="/images/Svg/Linkdin.svg" className="w-7 cursor-pointer" alt="LinkedIn" />
+            <img src="/images/Svg/cv.svg" className="w-8 cursor-pointer" alt="CV" />
+            <a
+              href="https://www.linkedin.com/in/nadia-nisa-63998a266/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer inline-block"
+            >
+              <img src="/images/Svg/Linkdin.svg" className="w-8" alt="LinkedIn" />
+            </a>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 export default function Testimonial() {
   const [isPaused, setIsPaused] = useState(false);
@@ -7,27 +7,30 @@ export default function Testimonial() {
 
   const testimonials = [
     {
-      img: 'https://i.pravatar.cc/40?img=3',
-      name: 'Soharul Habib',
-      role: 'Co-Founder & CEO @ OrbitX',
+      img: "https://i.pravatar.cc/40?img=3",
+      name: "Soharul Habib",
+      role: "Co-Founder & CEO @ OrbitX",
       text: "I've had the pleasure of knowing and working with Nadia Nisa. She is a passionate and detail-oriented UI/UX Designer.",
     },
     {
-      img: 'https://i.pravatar.cc/40?img=5',
-      name: 'MD. Mumin Bin Salim',
-      role: 'Graphic Designer | Video Editor',
-      text: 'Nadia is a very skilled UX designer. Her attention to detail and dedication to finding solutions are impressive.',
+      img: "https://i.pravatar.cc/40?img=5",
+      name: "MD. Mumin Bin Salim",
+      role: "Graphic Designer | Video Editor",
+      text: "Nadia is a very skilled UX designer. Her attention to detail and dedication to finding solutions are impressive.",
     },
     {
-      img: 'https://i.pravatar.cc/40?img=8',
-      name: 'Tumelo Webb',
-      role: 'UI/UX Designer • Product Designer',
-      text: 'I had the pleasure of mentoring Nadia and she consistently delivers high quality work.',
+      img: "https://i.pravatar.cc/40?img=8",
+      name: "Tumelo Webb",
+      role: "UI/UX Designer • Product Designer",
+      text: "I had the pleasure of mentoring Nadia and she consistently delivers high quality work.",
     },
   ];
 
   const originalLength = testimonials.length;
-  const extendedTestimonials = Array.from({ length: 12 }, () => testimonials).flat();
+  const extendedTestimonials = Array.from(
+    { length: 12 },
+    () => testimonials,
+  ).flat();
 
   useEffect(() => {
     const initScroll = () => {
@@ -35,7 +38,10 @@ export default function Testimonial() {
         const firstChild = scrollContainerRef.current.children[0];
         if (firstChild && firstChild.offsetWidth > 0) {
           const itemWidth = firstChild.offsetWidth + 40; // 40px corresponds to gap-10
-          scrollContainerRef.current.scrollTo({ left: itemWidth * originalLength * 5, behavior: 'auto' });
+          scrollContainerRef.current.scrollTo({
+            left: itemWidth * originalLength * 5,
+            behavior: "auto",
+          });
         } else {
           setTimeout(initScroll, 50);
         }
@@ -58,26 +64,40 @@ export default function Testimonial() {
           const maxNormalScroll = originalLength * itemWidth;
 
           if (scrollLeft >= maxNormalScroll * 8) {
-            scrollContainerRef.current.scrollTo({ left: scrollLeft - maxNormalScroll * 4, behavior: 'auto' });
+            scrollContainerRef.current.scrollTo({
+              left: scrollLeft - maxNormalScroll * 4,
+              behavior: "auto",
+            });
             requestAnimationFrame(() => {
               requestAnimationFrame(() => {
                 if (scrollContainerRef.current) {
-                  scrollContainerRef.current.scrollTo({ left: scrollContainerRef.current.scrollLeft + itemWidth, behavior: 'smooth' });
+                  scrollContainerRef.current.scrollTo({
+                    left: scrollContainerRef.current.scrollLeft + itemWidth,
+                    behavior: "smooth",
+                  });
                 }
               });
             });
-          }
-          else if (scrollLeft <= maxNormalScroll * 2) {
-            scrollContainerRef.current.scrollTo({ left: scrollLeft + maxNormalScroll * 4, behavior: 'auto' });
+          } else if (scrollLeft <= maxNormalScroll * 2) {
+            scrollContainerRef.current.scrollTo({
+              left: scrollLeft + maxNormalScroll * 4,
+              behavior: "auto",
+            });
             requestAnimationFrame(() => {
               requestAnimationFrame(() => {
                 if (scrollContainerRef.current) {
-                  scrollContainerRef.current.scrollTo({ left: scrollContainerRef.current.scrollLeft + itemWidth, behavior: 'smooth' });
+                  scrollContainerRef.current.scrollTo({
+                    left: scrollContainerRef.current.scrollLeft + itemWidth,
+                    behavior: "smooth",
+                  });
                 }
               });
             });
           } else {
-            scrollContainerRef.current.scrollTo({ left: scrollLeft + itemWidth, behavior: 'smooth' });
+            scrollContainerRef.current.scrollTo({
+              left: scrollLeft + itemWidth,
+              behavior: "smooth",
+            });
           }
         }
       }
@@ -112,21 +132,24 @@ export default function Testimonial() {
         else if (diff < -originalLength / 2) diff += originalLength;
 
         const targetIndex = currentIndex + diff;
-        scrollContainerRef.current.scrollTo({ left: targetIndex * itemWidth, behavior: 'smooth' });
+        scrollContainerRef.current.scrollTo({
+          left: targetIndex * itemWidth,
+          behavior: "smooth",
+        });
       }
     }
   };
 
   const handleCardClick = () => {
     window.open(
-      'https://www.linkedin.com/in/nadia-nisa-63998a266/details/recommendations/?detailScreenTabIndex=0',
-      '_blank'
+      "https://www.linkedin.com/in/nadia-nisa-63998a266/details/recommendations/?detailScreenTabIndex=0",
+      "_blank",
     );
   };
 
   return (
     <section className="max-w-[1170px] mx-auto px-4 md:px-0 mt-12 md:mt-37">
-      <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-12">
+      <div className="flex flex-row justify-between items-end md:items-center gap-4 mb-12">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-widest">
           TESTIMONIAL
         </h2>
@@ -155,7 +178,7 @@ export default function Testimonial() {
             aria-label="Open LinkedIn recommendations"
             onClick={handleCardClick}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
+              if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 handleCardClick();
               }
@@ -165,7 +188,9 @@ export default function Testimonial() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-blue-600 font-semibold">Linked</span>
-                <span className="bg-blue-600 text-white text-xs px-1 rounded">in</span>
+                <span className="bg-blue-600 text-white text-xs px-1 rounded">
+                  in
+                </span>
               </div>
               <p className="text-sm text-gray-600 mb-6">
                 {item.text}
@@ -173,7 +198,11 @@ export default function Testimonial() {
               </p>
             </div>
             <div className="flex items-center gap-4 mt-auto">
-              <img src={item.img} className="w-10 h-10 rounded-full" alt={item.name} />
+              <img
+                src={item.img}
+                className="w-10 h-10 rounded-full"
+                alt={item.name}
+              />
               <div>
                 <h4 className="font-semibold text-sm">{item.name}</h4>
                 <p className="text-xs text-gray-500">{item.role}</p>
@@ -188,7 +217,7 @@ export default function Testimonial() {
           <button
             key={idx}
             type="button"
-            className={`h-2 rounded transition-colors duration-300 ${activeIndex === idx ? 'w-10 bg-gray-700' : 'w-4 bg-gray-400'
+            className={`h-2 rounded transition-colors duration-300 ${activeIndex === idx ? "w-10 bg-gray-700" : "w-4 bg-gray-400"
               }`}
             onClick={() => scrollToDot(idx)}
             aria-label={`Testimonial ${idx + 1}`}

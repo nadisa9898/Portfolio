@@ -4,7 +4,6 @@ import { projects } from '../utils/my-work';
 
 export default function MyWork() {
   const [isPaused, setIsPaused] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef(null);
 
 
@@ -78,35 +77,14 @@ export default function MyWork() {
     return () => clearInterval(interval);
   }, [isPaused, originalLength]);
 
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft } = scrollContainerRef.current;
-      const firstChild = scrollContainerRef.current.children[0];
-      if (firstChild) {
-        const itemWidth = firstChild.offsetWidth + 40;
-        const index = Math.round(scrollLeft / itemWidth);
-
-        // Loop dots index bound via modulo
-        setActiveIndex(index % originalLength);
-      }
-    }
-  };
-
-  const scrollToDot = (dotIndex) => {
+  const scrollByDirection = (direction) => {
     if (scrollContainerRef.current) {
       const { scrollLeft } = scrollContainerRef.current;
       const firstChild = scrollContainerRef.current.children[0];
       if (firstChild) {
         const itemWidth = firstChild.offsetWidth + 40;
         const currentIndex = Math.round(scrollLeft / itemWidth);
-        const currentMod = currentIndex % originalLength;
-        let diff = dotIndex - currentMod;
-
-        // Optimize short path logic; avoid spinning around visually too long
-        if (diff > originalLength / 2) diff -= originalLength;
-        else if (diff < -originalLength / 2) diff += originalLength;
-
-        const targetIndex = currentIndex + diff;
+        const targetIndex = currentIndex + direction;
         scrollContainerRef.current.scrollTo({ left: targetIndex * itemWidth, behavior: 'smooth' });
       }
     }
@@ -123,12 +101,11 @@ export default function MyWork() {
 
       <div
         ref={scrollContainerRef}
-        onScroll={handleScroll}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
-        className="flex gap-10 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        className="flex gap-8 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
         {extendedProjects.map((project, index) => (
           <a
@@ -154,15 +131,21 @@ export default function MyWork() {
         ))}
       </div>
 
-      <div className="flex justify-center mt-12 gap-3">
-        {Array.from({ length: originalLength }).map((_, index) => (
-          <span
-            key={index}
-            onClick={() => scrollToDot(index)}
-            className={`h-1 cursor-pointer transition-all duration-300 rounded-full ${activeIndex === index ? 'w-10 bg-gray-800' : 'w-3 bg-gray-400'
-              }`}
-          ></span>
-        ))}
+      <div className="flex justify-center mt-12 gap-3 items-center">
+        <span
+          onClick={() => scrollByDirection(-1)}
+          className="h-1 cursor-pointer transition-all duration-300 rounded-full w-3 bg-gray-400 hover:w-4 hover:bg-gray-600"
+          aria-label="Previous Project"
+        ></span>
+        <span
+          className="h-1 transition-all duration-300 rounded-full w-10 bg-gray-800"
+          aria-label="Current Project"
+        ></span>
+        <span
+          onClick={() => scrollByDirection(1)}
+          className="h-1 cursor-pointer transition-all duration-300 rounded-full w-3 bg-gray-400 hover:w-4 hover:bg-gray-600"
+          aria-label="Next Project"
+        ></span>
       </div>
     </section>
   );
