@@ -18,11 +18,11 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-wrap gap-4">
-          <button className="bg-black text-white w-[186px] h-[62px] flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-800 transition-colors">
+          <button className="bg-black text-white w-[138px] h-[46px] md:w-[186px] md:h-[62px] text-[18px] md:text-base flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-800 transition-colors">
             View My Work
           </button>
 
-          <button className="border border-black w-[186px] h-[62px] flex justify-center items-center rounded-full hover:bg-gray-50 transition-colors">
+          <button className="border border-black w-[138px] h-[46px] md:w-[186px] md:h-[62px] text-[18px] md:text-base flex justify-center items-center rounded-full hover:bg-gray-50 transition-colors">
             Download Resume
           </button>
         </div>
