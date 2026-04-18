@@ -9,7 +9,7 @@ export default function Contact() {
         </div>
 
         <div className="flex justify-start md:justify-self-end">
-          <img src="/images/QRCode.png" className="w-60 md:w-72" alt="QR Code" />
+          <img src="/images/QRCode.png" className="w-60 md:w-80" alt="QR Code" />
         </div>
       </div>
     </section>

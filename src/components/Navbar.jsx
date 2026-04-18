@@ -55,8 +55,16 @@ export default function Navbar() {
 
         {/* Desktop icons */}
         <div className="hidden md:flex gap-4 items-center">
-          <img src="/images/Svg/cv.svg" className="w-5" alt="CV" />
-          <img src="/images/Svg/Linkdin.svg" className="w-5" alt="LinkedIn" />
+          <img src="/images/Svg/cv.svg" className="w-8" alt="CV" />
+          <a
+            href="https://www.linkedin.com/in/nadia-nisa-63998a266/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer inline-block"
+          >
+            <img src="/images/Svg/Linkdin.svg" className="w-8" alt="LinkedIn" />
+          </a>
+          {/* <img src="/images/Svg/Linkdin.svg" className="w-8" alt="LinkedIn" /> */}
         </div>
 
         {/* Mobile hamburger button */}
@@ -73,9 +81,8 @@ export default function Navbar() {
 
       {/* ================= MOBILE MENU OVERLAY ================= */}
       <div
-        className={`fixed inset-0 z-50 bg-[#E3E3CE] flex-col ${
-          mobileMenuOpen ? 'flex' : 'hidden'
-        }`}
+        className={`fixed inset-0 z-50 bg-[#E3E3CE] flex-col ${mobileMenuOpen ? 'flex' : 'hidden'
+          }`}
       >
         {/* Top bar */}
         <div className="flex justify-between items-center px-6 pt-10 pb-6">
