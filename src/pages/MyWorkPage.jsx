@@ -28,8 +28,8 @@ export default function MyWorkPage() {
                 alt={project.title}
               />
             </div>
-            <h3 className="mt-4 font-semibold">{project.title}</h3>
-            <p className="text-sm text-gray-600">{project.type}</p>
+            <h3 className="mt-4 text-[#242424] font-medium text-[24px]">{project.title}</h3>
+            <p className="text-[#242424] text-[20px]">{project.type}</p>
           </a>
         ))}
       </div>
