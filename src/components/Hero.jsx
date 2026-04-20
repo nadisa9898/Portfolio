@@ -8,15 +8,15 @@ export default function Hero() {
       <div>
         <p className="text-[40px] mb-2">Hello,</p>
 
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 font-last-shuriken">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-[12px] font-last-shuriken">
           I'm Nadia Nisa
         </h1>
 
-        <h2 className="text-xl md:text-[40px] font-semibold mb-4 font-sofia">
+        <h2 className="text-xl md:text-[40px] font-semibold mb-[12px] font-sofia">
           A Professional UI/UX Designer
         </h2>
 
-        <p className="text-[#242424] mb-8 text-[24px]">
+        <p className="text-[#242424] mb-[30px] text-[24px]">
           shaping digital products with user-friendly interfaces and impactful experiences.
         </p>
 
