@@ -34,7 +34,7 @@ export default function Footer() {
 
             <li className="hover:text-white cursor-pointer">
               <a
-                href="YOUR_GOOGLE_DRIVE_RESUME_LINK_HERE"
+                href="https://drive.google.com/file/d/1f4S4enf4-FKqPHb2bGxhAZ9ShsqN9Nug/view"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white"

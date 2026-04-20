@@ -27,9 +27,13 @@ export default function Hero() {
             View My Work
           </button>
 
-          <button className="border border-black w-[138px] h-[46px] md:w-[186px] md:h-[62px] text-[18px] md:text-base flex justify-center items-center rounded-full hover:bg-gray-50 transition-colors">
+          <a
+            href="/file/NadiaNisa.pdf"
+            download="NadiaNisa.pdf"
+            className="border border-black w-[138px] h-[46px] md:w-[186px] md:h-[62px] text-[18px] md:text-base flex justify-center items-center rounded-full hover:bg-gray-50 transition-colors"
+          >
             Download Resume
-          </button>
+          </a>
         </div>
       </div>
 

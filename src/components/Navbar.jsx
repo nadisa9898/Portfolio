@@ -67,7 +67,13 @@ export default function Navbar() {
 
         {/* Desktop icons */}
         <div className="hidden md:flex gap-4 items-center">
-          <img src="/images/Svg/cv.svg" className="w-8 cursor-pointer" alt="CV" />
+          <a
+            href="https://drive.google.com/file/d/1f4S4enf4-FKqPHb2bGxhAZ9ShsqN9Nug/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/images/Svg/cv.svg" className="w-8 cursor-pointer" alt="CV" />
+          </a>
           <a
             href="https://www.linkedin.com/in/nadia-nisa-63998a266/"
             target="_blank"
@@ -120,7 +126,13 @@ export default function Navbar() {
 
           {/* Social icons */}
           <div className="flex flex-col items-center gap-5 mt-12 pb-10">
-            <img src="/images/Svg/cv.svg" className="w-8 cursor-pointer" alt="CV" />
+            <a
+              href="https://drive.google.com/file/d/1f4S4enf4-FKqPHb2bGxhAZ9ShsqN9Nug/view"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="/images/Svg/cv.svg" className="w-8 cursor-pointer" alt="CV" />
+            </a>
             <a
               href="https://www.linkedin.com/in/nadia-nisa-63998a266/"
               target="_blank"
