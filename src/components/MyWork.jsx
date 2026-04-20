@@ -93,7 +93,7 @@ export default function MyWork() {
   return (
     <section id="work" className="max-w-[1170px] mx-auto px-4 md:px-0 mt-20">
       <div className="flex justify-between items-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-extrabold uppercase">My Work</h2>
+        <h2 className="text-[40px] md:text-[60px] font-semibold font-last-shuriken tracking-[0]">My Work</h2>
         <Link to="/my-work" className="text-sm underline cursor-pointer hover:text-gray-600">
           View All
         </Link>

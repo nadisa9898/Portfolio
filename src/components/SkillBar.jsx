@@ -12,7 +12,7 @@ export default function SkillBar() {
   ];
 
   return (
-    <div className="bg-black text-white py-0.5 mt-4 md:-ml-12 md:-mr-12 -rotate-2 overflow-hidden flex">
+    <div className="bg-[#242424] text-white py-0.5 mt-4 md:-ml-12 md:-mr-12 -rotate-2 overflow-hidden flex">
       <div className="animate-marquee flex gap-7 text-[20px] font-bold whitespace-nowrap min-w-max flex-shrink-0 pr-7">
         {skills.map((skill, index) => (
           <div key={index} className="flex items-center gap-7">

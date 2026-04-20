@@ -149,13 +149,13 @@ export default function Testimonial() {
 
   return (
     <section className="max-w-[1170px] mx-auto px-4 md:px-0 mt-12 md:mt-37">
-      <div className="flex flex-row justify-between items-end md:items-center gap-4 mb-12">
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-widest">
+      <div className="flex flex-row justify-between items-end md:items-center gap-1 md:gap-4 mb-12 flex-wrap">
+        <h2 className="text-[40px] md:text-[60px] font-semibold font-last-shuriken tracking-[0]">
           TESTIMONIAL
         </h2>
         <a
           href="https://www.linkedin.com/in/nadia-nisa-63998a266/details/recommendations/?detailScreenTabIndex=0"
-          className="text-sm font-semibold underline"
+          className="text-sm font-semibold underline text-nowrap"
         >
           View All
         </a>

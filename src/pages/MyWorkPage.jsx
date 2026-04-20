@@ -5,7 +5,7 @@ export default function MyWorkPage() {
 
   return (
     <div className="max-w-[1170px] mx-auto px-4 md:px-0 md:pt-15 pb-24">
-      <h1 className="text-5xl md:text-6xl font-extrabold uppercase text-center mt-12 mb-16 font-last-shuriken text-[#323131]">
+      <h1 className="text-[40px] md:text-[60px] font-semibold font-last-shuriken tracking-[0]">
         MY WORK
       </h1>
 

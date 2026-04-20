@@ -40,26 +40,26 @@ export default function Navbar() {
   return (
     <>
       {/* ================= NAVBAR ================= */}
-      <nav className="sticky top-0 z-[999] bg-[#E3E3CE] md:bg-[#FAFAF4]/50 rounded-none md:rounded-full px-6 md:px-17.5 py-4 flex justify-between items-center -mx-4 md:mx-0 transition-all duration-300 transform-gpu">
+      <nav className="sticky top-0 z-[999] bg-[#F9F9F0]/50 md:border border-[#FAFAF4]/50 rounded-none md:rounded-full px-6 md:px-17.5 py-4 flex justify-between items-center -mx-4 md:mx-0 transition-all duration-300 transform-gpu">
         <img src="/images/logo1.png" alt="Logo" className="h-10 cursor-pointer relative z-[1000]" onClick={() => handleNavClick('home')} />
 
         {/* Desktop nav links */}
-        <ul className="hidden md:flex gap-10 text-sm">
+        <ul className="hidden md:flex gap-10 text-[18px]">
           <li
             onClick={() => handleNavClick('home')}
-            className="cursor-pointer text-[#242424] font-semibold hover:text-gray-500"
+            className="cursor-pointer text-[#242424] font-medium hover:text-gray-500"
           >
             Home
           </li>
           <li
             onClick={handleMyWorkClick}
-            className="cursor-pointer text-[#242424] font-semibold hover:text-gray-500"
+            className="cursor-pointer text-[#242424] font-medium hover:text-gray-500"
           >
             My Work
           </li>
           <li
             onClick={() => handleNavClick('contact')}
-            className="cursor-pointer text-[#242424] font-semibold hover:text-gray-500"
+            className="cursor-pointer text-[#242424] font-medium hover:text-gray-500"
           >
             Contact Me
           </li>
