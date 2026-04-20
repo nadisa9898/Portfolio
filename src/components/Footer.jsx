@@ -6,8 +6,8 @@ export default function Footer() {
           <img src="/images/logo-footer.png" alt="Footer Logo" />
 
           <p className="text-sm text-white max-w-xs mt-6 md:mt-0">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et
+            Turning complex ideas into
+            simple, impactful experiences.
           </p>
         </div>
 

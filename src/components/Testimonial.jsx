@@ -7,22 +7,22 @@ export default function Testimonial() {
 
   const testimonials = [
     {
-      img: "https://i.pravatar.cc/40?img=3",
-      name: "Soharul Habib",
+      img: "images/Sohan.png",
+      name: "Sohanul Habib",
       role: "Co-Founder & CEO @ OrbitX",
-      text: "I've had the pleasure of knowing and working with Nadia Nisa. She is a passionate and detail-oriented UI/UX Designer.",
+      text: "I’ve had the pleasure of knowing and working with Nadia Nisa, and I must say — she’s a passionate and detail-oriented UI/UX Designer with a great sense of empathy for users.Nadia has a natural ability to understand user needs and translate them into intuitive...",
     },
     {
-      img: "https://i.pravatar.cc/40?img=5",
-      name: "MD. Mumin Bin Salim",
-      role: "Graphic Designer | Video Editor",
-      text: "Nadia is a very skilled UX designer. Her attention to detail and dedication to finding solutions are impressive.",
+      img: "images/munim.png",
+      name: "MD. Munim Bin Salim",
+      role: "Seasoned Graphic Designer | Video Editor",
+      text: "Nadia is a very skilled and passionate UX designer. Her attention to details, commitment to her work and dedication to find the best solution are praiseworthy. She goes deep into finding the solution of the problem at hand. She is also very good with Figma...",
     },
     {
-      img: "https://i.pravatar.cc/40?img=8",
+      img: "images/Tumelo.png",
       name: "Tumelo Webb",
-      role: "UI/UX Designer • Product Designer",
-      text: "I had the pleasure of mentoring Nadia and she consistently delivers high quality work.",
+      role: "UI/UX Designer • Product Designer ",
+      text: "I had the pleasure of mentoring Nadia Nisa during her time on my program and I can confidently say she is one of the most dedicated and consistent young professionals I’ve worked with. From the very beginning, Nadia demonstrated a strong commitment...",
     },
   ];
 
@@ -186,10 +186,10 @@ export default function Testimonial() {
             className="bg-white rounded-xl shadow-md p-6 cursor-pointer flex-shrink-0 snap-start w-full sm:w-[calc(50%-20px)] lg:w-[calc(33.333%-27px)] flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-blue-600 font-semibold">Linked</span>
-                <span className="bg-blue-600 text-white text-xs px-1 rounded">
-                  in
+              <div className="flex items-center justify-between mb-[10px]">
+                <span className="text-blue-600 font-semibold"><img src="images/linkedIn.png" alt="" /></span>
+                <span className="">
+                  <img src="images/quote.png" alt="" />
                 </span>
               </div>
               <p className="text-sm text-gray-600 mb-6">
