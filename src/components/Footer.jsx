@@ -1,4 +1,19 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function Footer() {
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    if (window.location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    } else {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-[#1f1f1f] text-gray-300 mt-20 pt-16 pb-6">
       <div className="max-w-[1170px] mx-auto px-4 md:px-0 grid md:grid-cols-3 gap-12">
@@ -15,11 +30,20 @@ export default function Footer() {
           <h4 className="text-white font-semibold mb-4 text-lg md:text-base">Explore</h4>
 
           <ul className="space-y-4 md:space-y-2 text-sm">
-            <li className="hover:text-white cursor-pointer">Work</li>
+            <li onClick={() => navigate('/my-work')} className="hover:text-white cursor-pointer">Work</li>
 
-            <li className="hover:text-white cursor-pointer">Resume</li>
+            <li className="hover:text-white cursor-pointer">
+              <a
+                href="YOUR_GOOGLE_DRIVE_RESUME_LINK_HERE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white"
+              >
+                Resume
+              </a>
+            </li>
 
-            <li className="hover:text-white cursor-pointer">Contact Me</li>
+            <li onClick={handleContactClick} className="hover:text-white cursor-pointer">Contact Me</li>
           </ul>
         </div>
 

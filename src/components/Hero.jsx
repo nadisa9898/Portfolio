@@ -12,17 +12,16 @@ export default function Hero() {
           I'm Nadia Nisa
         </h1>
 
-        <h2 className="text-xl md:text-2xl font-semibold mb-4 font-sofia">
+        <h2 className="text-xl md:text-[40px] font-semibold mb-4 font-sofia">
           A Professional UI/UX Designer
         </h2>
 
-        <p className="text-gray-700 max-w-md mb-8">
-          shaping digital products with user-friendly interfaces and impactful
-          experiences.
+        <p className="text-[#242424] mb-8 text-[24px]">
+          shaping digital products with user-friendly interfaces and impactful experiences.
         </p>
 
         <div className="flex flex-wrap gap-4">
-          <button 
+          <button
             onClick={() => navigate('/my-work')}
             className="bg-[#242424] text-white w-[138px] h-[46px] md:w-[186px] md:h-[62px] text-[18px] md:text-base flex justify-center items-center rounded-full cursor-pointer hover:bg-[#88887c] transition-colors">
             View My Work
